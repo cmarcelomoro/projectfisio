@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Evolução</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/bulma@0.9.4/dist/js/bulma.min.js"></script>
+  <div th:replace="~{barra :: ~{barra_superior}}"></div>
+</head>
+<body>
+
+<columns class="columns">
+
+    <div class="column"></div>
+    <form class="form box column is-centered is-one-third mt-4" th:action="@{/evolucao/salvar/{id}(id=${paciente.id})}" th:object="${evolucao}" method="post">
+
+
+        <div class="field">
+            <label class="title">Descrição da evolução</label>
+            <div class="control">
+                <textarea class="textarea" type="text" th:field="*{descricao}"></textarea>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Data da evolução</label>
+            <div class="control">
+                <input class="input" type="date" th:field="*{diaHora}" id="diaHora" >
+            </div>
+        </div>
+
+
+        <div class="field is-grouped">
+            <div class="control">
+                <button type="submit" class="button is-success">Salvar</button>
+            </div>
+            <div class="control">
+                <a class="button is-light"  th:href="@{/evolucao/listar/{pacienteId}(pacienteId=${paciente.id})}">Voltar para evoluções</a>
+            </div>
+        </div>
+
+
+    </form>
+    <div class="column"></div>
+</columns>
+
+</body>
+</html>

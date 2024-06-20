@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+
+    <nav th:replace="~{barra :: ~{barra_superior}}"> </nav>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+</head>
+<body class="has-background-white">
+
+<div class="container box">
+    <section class="section">
+        <columns class="columns">
+            <column class="column">
+                <div class="container">
+
+                    <table class="table box">
+                        <thead>
+                            <columns class="columns">
+                                <column class="column">
+                                        <a><ion-icon class=" is-size-3 has-text-left" name="arrow-back-outline"></ion-icon></a>
+                                </column>
+                                <column class="column has-text-centered">
+                                    <p class="title">Janeiro</p>
+                                </column>
+                                <column class="column has-text-right">
+                                    <a><ion-icon class=" is-size-3" name="arrow-forward-outline"></ion-icon> </a>
+                                </column>
+                            </columns>
+
+                            <th class="is-size-4">Horarios</th>
+                            <th class="is-size-5">Domingo</th>
+                            <th class="is-size-5">Segunda</th>
+                            <th class="is-size-5">Terça</th>
+                            <th class="is-size-5">Quarta</th>
+                            <th  class="is-size-5">Quinta</th>
+                            <th class="is-size-5">Sexta</th>
+                            <th class="is-size-5">Sábado</th>
+                        </thead>
+                        <tbody>
+                            <div>
+                                <tr>
+                                    <th>8:00 ~ 9:00</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </div>
+
+                            <tr>
+                                <th>9:00 ~ 10:00</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>10:00 ~ 11:00</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>11:00 ~ 12:00</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>14:00 ~ 15:00</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>15:00 ~ 16:00</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>17:00 ~ 18:00</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>18:00 ~ 19:00</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <th>19:00 ~ 20:00</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </column>
+            <column class="column">
+                <form class="form box" th:action="@{/home/sessao/save}" th:object="${novaSessao}" method="post">
+                    <p class="title">Marcar Sessão</p>
+                    <div class="field">
+                        <label class="label">Paciente</label>
+                        <div class="control">
+                            <div class="select">
+                                <select th:field="*{paciente}">
+                                    <option th:each="paciente : ${pacientes}" th:value="${paciente.id}" th:text="${paciente.nome}">Select dropdown</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <columns class="columns">
+                            <column class="column">
+                                <label class="label">Hora Inicio</label>
+                            </column>
+                            <column class="column">
+                                <label class="label">Hora Fim</label>
+                            </column>
+                        </columns>
+                    </div>
+                </form>
+            </column>
+
+        </columns>
+
+
+    </section>
+</div>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

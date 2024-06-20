@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Paciente</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+  <div th:replace="~{barra :: ~{barra_superior}}"></div>
+  <script>
+    function formatarTelefone(input) {
+      // Remove todos os caracteres não numéricos
+      var numeroTelefone = input.value.replace(/\D/g, '');
+
+      // Aplica a formatação desejada
+      if (numeroTelefone.length === 11) {
+        input.value = '(' + numeroTelefone.substring(0, 2) + ') ' + numeroTelefone.substring(2, 7) + '-' + numeroTelefone.substring(7);
+      } else if (numeroTelefone.length === 10) {
+        input.value = '(' + numeroTelefone.substring(0, 2) + ') ' + numeroTelefone.substring(2, 6) + '-' + numeroTelefone.substring(6);
+      }
+      // Você pode adicionar mais casos conforme necessário para outros formatos
+    }
+  </script>
+
+</head>
+<body>
+
+<container class="container">
+
+
+  <div class="columns is-centered">
+    <div class="column is-one-third">
+      <form class="form box" th:action="@{/paciente/editar/{id}(id=${id})}" th:object="${paciente}" method="post">
+        <div class="field">
+          <label class="label">Nome</label>
+          <div class="control">
+            <input class="input" type="text" th:field="*{nome}">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Sexo</label>
+
+
+          <div class="field">
+            <div class="control">
+              <label class="radio">
+                <input type="radio" name="question" value="M" th:field="*{sexo}">
+                M
+              </label>
+              <label class="radio">
+                <input type="radio" name="question" value="F" th:field="*{sexo}">
+                F
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Data de Nascimento</label>
+          <div class="control">
+            <input class="input" type="date" th:field="*{dataNasc}" id="dataNasc" name="dataNasc" >
+          </div>
+        </div>
+
+
+        <div class="field">
+          <label class="label">Etnia</label>
+          <div class="control">
+            <div class="select">
+              <select th:field="*{etnia}">
+                <option th:value="branca">Branco(a)</option>
+                <option th:value="preta">Preto(a)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Profissão</label>
+          <div class="control">
+            <input class="input" type="text" th:field="*{profissao}">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Estado civil</label>
+          <div class="control">
+            <div class="select">
+              <select th:field="*{estadoCivil}">
+                <option th:value="solteiro" th:selected="${paciente.estadoCivil == 'Solteiro(a)'}">Solteiro(a)</option>
+                <option th:value="casado" th:selected="${paciente.estadoCivil == 'Casado(a)'}">Casado(a)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Naturalidade</label>
+          <div class="control">
+            <input class="input" type="text" th:field="*{naturalidade}">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Telefone</label>
+          <div class="control">
+            <input  th:field="*{telefone}" class="input" type="tel" oninput="formatarTelefone(this)" id="telefone" >
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Endereço</label>
+          <div class="control">
+            <input class="input" type="text" th:field="*{endereco}">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Bairro</label>
+          <div class="control">
+            <input class="input" type="text" th:field="*{bairro}">
+          </div>
+        </div>
+        
+        <div class="field">
+          <label class="label">Médico Responsável</label>
+          <div class="control">
+            <input th:field="*{medico}" class="input" type="text"/>
+          </div>
+        </div>
+
+        <div class="field is-grouped">
+          <div class="control">
+            <button type="submit" class="button">Editar</button>
+          </div>
+          <div class="control">
+            <button class="button is-light">Voltar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</container>
+
+</body>
+</html>

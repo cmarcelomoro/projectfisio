@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:td="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Evolução do Paciente</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <div th:replace="~{barra :: ~{barra_superior}}"></div>
+</head>
+<body>
+<div class="columns">
+
+  <div class="column is-one-quarter">
+
+
+  </div>
+
+  <div class="column is-half box mt-4">
+      <h1 class="title">
+          Evoluções de: [[${paciente.nome}]]
+          <a class="button has-background-success is-pulled-right" th:href="@{/evolucao/registrar/{id}(id=${paciente.id})}">Inserir Evolução</a>
+      </h1>
+
+    <table class="table is-touch-flex">
+      <tr class="table-header">
+        <td class="has-text-weight-bold">Data</td>
+        <td class="has-text-weight-bold">Descrição da Evolução</td>
+
+      </tr>
+      <tr th:each="e : *{evolucoes}">
+        <td th:text="${e.diaHora}"></td>
+        <td>
+            <article class="message" style="width: 75%;">
+            <div class="message-body has-background-link-light" th:text="${e.descricao}" >
+            </div>
+            </article>
+        </td>
+          <td> <a class="button">Editar</a></td>
+      </tr>
+
+    </table>
+
+
+  </div>
+  <div class="column  is-one-quarter">
+
+  </div>
+</div>
+</body>
+</html>
